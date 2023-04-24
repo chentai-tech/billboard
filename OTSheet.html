@@ -1,0 +1,67 @@
+<script type="text/javascript">
+	function setString() {
+		var content;
+		var fname = document.getElementById("fname").value;
+		var hours = document.getElementById("hours").value;
+		var hg = document.getElementById("hg").value;
+		var leave = document.getElementById("leave").value;
+		var offday = (document.getElementById("offday").value).replaceAll("-","/");
+		var kk = document.getElementById("kk").value
+		var ontime = document.getElementById("ontime").value;
+		var offtime = document.getElementById("offtime").value;
+		var count = document.getElementById("count").value;
+		var aa = document.getElementById("aa").value;
+		var bb = document.getElementById("bb").value;
+		content = "員工姓名：" + fname + "\n";
+		content += "可用特休時數：" + hours + "\n";
+		content += "可用補休時數：" + hg + "\n";
+		content += "假別：" + leave + "\n";
+		if (kk == "") {
+			content += "請假日期：" + offday + "\n";
+		} else {
+			content += "請假日期：" + offday + "-" + kk + "\n";
+		}
+		content += "請假時間：" + ontime + "-" + offtime + "\n";
+		content += "休假時數：" + count + "\n";
+		content += "特休結餘：" + aa + "\n";
+		content += "補休結餘：" + bb + "\n";
+		document.getElementById("OTString").innerHTML = content;
+	}
+	function copyTextToClipboard() {
+		var content = document.getElementById('OTString').value;
+		navigator.clipboard.writeText(content).then(function() {
+			console.log('successful');
+		}, function(err) {
+			console.error('err');
+		});
+	}
+</script>
+<form action="get.php" method="get">
+員工姓名：<input type='text' id="fname" name="fname"><br>
+可用特休時數：<input type='number' value="0" step="0.5" id="hours" name="hours"><br>
+可用補休時數：<input type="number" value="0" step="0.5" id="hg"><br>
+假別：<select name="leave" id="leave">
+		<option value="特休">特休</option>
+		<option value="補休">補休</option>
+		<option value="公假">公假</option>
+		<option value="公傷假">公傷假</option>
+		<option value="婚假">婚假</option>
+		<option value="產假">產假</option>
+		<option value="陪產假">陪產假</option>
+		<option value="喪假">喪假</option>
+		<option value="病假">病假</option>
+		<option value="生理假">生理假</option>
+		<option value="事假">事假</option>
+		<option value="家庭照顧假">家庭照顧假</option>
+		<option value="無薪假">無薪假</option>
+		<option value="防疫假">防疫假</option>
+	  </select><br>
+請假日期：<input type="date" id="offday" name="offday"> 到 <input type='text' id="kk" name="kk" size="1"><br>
+請假時間：<input type="time" id="ontime" name="ontime"> 到 <input type="time" id="offtime" name="offtime"><br>
+休假時數：<input type="number" id="count" name="count" min="0" value="0" step="0.5"><br>
+特休結餘：<input type="number" id="aa" value="0" step="0.5"><br>
+補休結餘：<input type="number" id="bb" value="0" step="0.5"><br>
+<p><input type="button" value="產生字串" onClick="setString()"> <input type="reset"> <input type="button" value="複製字串" onClick="copyTextToClipboard()"></p>
+<textarea id="OTString" name="OTString" rows="12" cols="50">
+</textarea>
+</form>
