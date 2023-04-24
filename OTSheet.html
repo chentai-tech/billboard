@@ -12,6 +12,8 @@
 		var count = document.getElementById("count").value;
 		var aa = document.getElementById("aa").value;
 		var bb = document.getElementById("bb").value;
+		var others = document.getElementById("others").value;
+		var remark = document.getElementById("remark").value;
 		content = "員工姓名：" + fname + "\n";
 		content += "可用特休時數：" + hours + "\n";
 		content += "可用補休時數：" + hg + "\n";
@@ -25,6 +27,8 @@
 		content += "休假時數：" + count + "\n";
 		content += "特休結餘：" + aa + "\n";
 		content += "補休結餘：" + bb + "\n";
+		content += "當日已請假人員：" + others + "\n";
+		content += "備註：" + remark;
 		document.getElementById("OTString").innerHTML = content;
 	}
 	function copyTextToClipboard() {
@@ -100,8 +104,10 @@
 休假時數：<input type="number" id="count" name="count" min="0" value="0" step="0.5"><br>
 特休結餘：<input type="number" id="aa" value="0" step="0.5"><br>
 補休結餘：<input type="number" id="bb" value="0" step="0.5"><br>
+當日已請假人員：<input type='text' id="others"><br>
+備註：<input type='text' id="remark"><br>
 <p><input type="button" value="產生字串" onClick="setString()"> <input type="reset"> <input type="button" value="複製字串" onClick="copyTextToClipboard()"></p>
-<textarea id="OTString" name="OTString" rows="12" cols="50">
+<textarea id="OTString" name="OTString" rows="14" cols="50">
 </textarea>
 </form>
 </div>
